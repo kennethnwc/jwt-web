@@ -6,7 +6,7 @@ interface Props {}
 
 export const Header: React.FC<Props> = () => {
   // better to use apollo cache rather than network only to fetch everytime
-  const { data, loading } = useMeQuery({ fetchPolicy: "network-only" });
+  const { data, loading } = useMeQuery();
 
   let body: any = null;
   if (loading) {
