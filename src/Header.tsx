@@ -21,7 +21,7 @@ export const Header: React.FC<Props> = () => {
       <div>
         <Link to="/bye">bye</Link>
       </div>
-      {data && data.me ? <div>you are logged in as:{data.me.email}</div> : null}
+      {data && data.me ? <div>you are logged in as:{data.me.email}</div> : <div>not logged in</div>>}
     </header>
   );
 };
