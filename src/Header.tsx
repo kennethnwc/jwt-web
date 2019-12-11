@@ -5,8 +5,16 @@ import { useMeQuery } from "./generated/graphql";
 interface Props {}
 
 export const Header: React.FC<Props> = () => {
-  const { data } = useMeQuery({ fetchPolicy: "network-only" });
+  const { data, loading } = useMeQuery({ fetchPolicy: "network-only" });
 
+  let body: any = null;
+  if (loading) {
+    body = null;
+  } else if (data && data.me) {
+    body = <div>you are logged in as:{data.me.email}</div>;
+  } else {
+    body = <div>not logged in</div>;
+  }
   return (
     <header>
       <div>
@@ -21,7 +29,7 @@ export const Header: React.FC<Props> = () => {
       <div>
         <Link to="/bye">bye</Link>
       </div>
-      {data && data.me ? <div>you are logged in as:{data.me.email}</div> : <div>not logged in</div>}
+      {body}
     </header>
   );
 };
